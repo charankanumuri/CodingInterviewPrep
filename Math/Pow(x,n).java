@@ -16,8 +16,8 @@ We can see n decreases on each recursive call.
 
 Base base is when n->0, we return 1
 
-conditon 1: so when N is even, we return (x pow n) * (x pow n)
-conditon 2: when N is odd, we return (x pow n) * (x pow n) * x
+conditon 1: so when N is even, we return (x pow n) * (x pow n)  --> n here is smaller than the original n from the question
+conditon 2: when N is odd, we return (x pow n) * (x pow n) * x  --> n here is smaller than the original n from the question
 */
 
 class Solution {
