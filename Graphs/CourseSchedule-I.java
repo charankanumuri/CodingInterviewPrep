@@ -63,10 +63,10 @@ class Solution {
         
         //creating graph and setting indegree for every node(course in this scenario)
         for(int i=0;i<prerequisites.length;i++){
-            Integer parent = prerequisites[i][0];
-            Integer child = prerequisites[i][1];
+            Integer parent = prerequisites[i][0]; //course to take
+            Integer child = prerequisites[i][1]; //prereq to complete 1st for that course
             
-            //child depends on parent, (i.e) to complete child course, i need to complete parent course first
+            //parent depends on child, (i.e) to complete parent course, i need to complete child course first
             graph.get(parent).add(child);
             indegree.put(child, indegree.get(child)+1);
         }
