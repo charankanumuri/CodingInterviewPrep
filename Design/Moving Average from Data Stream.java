@@ -1,0 +1,78 @@
+/**
+ * Moving Average from Data Stream
+Easy
+
+Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.
+
+Implement the MovingAverage class:
+
+MovingAverage(int size) Initializes the object with the size of the window size.
+double next(int val) Returns the moving average of the last size values of the stream.
+ 
+
+Example 1:
+
+Input
+["MovingAverage", "next", "next", "next", "next"]
+[[3], [1], [10], [3], [5]]
+Output
+[null, 1.0, 5.5, 4.66667, 6.0]
+
+Explanation
+MovingAverage movingAverage = new MovingAverage(3);
+movingAverage.next(1); // return 1.0 = 1 / 1
+movingAverage.next(10); // return 5.5 = (1 + 10) / 2
+movingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3
+movingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3
+ 
+
+Constraints:
+
+1 <= size <= 1000
+-105 <= val <= 105
+At most 104 calls will be made to next.
+ */
+
+class MovingAverage {
+    
+    //We are using deque here, so adding and removing - front/last is easy
+    int size;
+    Deque<Integer> queue;
+    
+    //variables to store movingAvg and total no's added
+    double movingAvg=0;
+    int total=0;
+    
+    //initialize on the constructor
+    public MovingAverage(int size) {
+        this.size=size;
+        this.queue = new ArrayDeque<Integer>();
+    }
+    
+    public double next(int val) {
+        
+        //increase total as we are gonna insert into the deque
+        total++;
+        queue.add(val);
+        
+        //maintain a variable to remove if window size is more than given size
+        int RemoveFirst=0;
+        
+        //if yes, remove the 1st element from queue, else it will remain 0
+        if(total>size){
+            RemoveFirst=queue.removeFirst(); 
+        }
+        
+        //add new value to moving avg and remove the 1st value if window is greater than given size
+        movingAvg = movingAvg+val-RemoveFirst;
+        
+        //return the average based on the total or size, we need size to be atmost given size
+        return movingAvg/Math.min(total,size);
+    }
+}
+
+/**
+ * Your MovingAverage object will be instantiated and called as such:
+ * MovingAverage obj = new MovingAverage(size);
+ * double param_1 = obj.next(val);
+ */
