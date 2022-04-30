@@ -2,13 +2,6 @@
  * Maximum Units on a Truck
 Easy
 
-1500
-
-103
-
-Add to List
-
-Share
 You are assigned to put some amount of boxes onto one truck. 
 You are given a 2D array boxTypes, where boxTypes[i] = [numberOfBoxesi, numberOfUnitsPerBoxi]:
 
